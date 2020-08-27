@@ -6,12 +6,14 @@
 
 import os
 
-# 只有文件夹 与 大于 5M 的文件会被记录，太小的文件则直接忽略，
-# 避免很多广告文件或者无关的小文件会增加数据库负担
-# 像解压的漫画之类的可以忽略文件，只检索到目录就够了
 import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
+
+# 避免很多广告文件或者无关的小文件会增加数据库负担
+# 像解压的漫画之类的可以忽略文件，只检索到目录就够了
+# 只有文件夹 与 大于 5M 的文件会被记录，太小的文件则直接忽略，
+minFileSize = 5000000
 
 #数据库链接配置
 db_cfg = mysql.connector.connect(
@@ -36,8 +38,6 @@ def sizeReadable(size, is_disk=False, precision=2):
             return str(round(size, precision)) + i
     return str(round(size, precision)) + i
 
-
-minFileSize = 5000000
 
 inpDrv = input("扫描的盘符（不带，如 c 代表 C:\ ）:")
 inpDrv = inpDrv.upper()
