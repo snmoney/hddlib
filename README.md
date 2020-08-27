@@ -19,6 +19,9 @@
 按自己情况修改, 默认只记录>=5M 的文件，如果需要调整这个文件修改头部的文件大小过滤算法
 
 ```python
+
+minFileSize = 5000000
+
 #数据库链接配置
 db_cfg = mysql.connector.connect(
             host="{你的mysql数据库IP}",
